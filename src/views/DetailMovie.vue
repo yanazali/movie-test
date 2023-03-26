@@ -27,15 +27,13 @@
             <button
               @click.prevent="voteMovie()"
               class="btn btn-sm ms-2 m-3"
-              :class="vote? 'btn-red':'btn-secondary'"
+              :class="vote ? 'btn-red' : 'btn-secondary'"
             >
               <i class="fa-fw fa fa-thumbs-up"></i>
-              {{vote ? 'Unvote' : 'Vote'}}
+              {{ vote ? "Unvote" : "Vote" }}
             </button>
             <router-link
-              :to="{                name: 'user-vote',
-                params: { id: movieId },
-              }"
+              :to="{ name: 'user-vote', params: { id: movieId } }"
               class="btn btn-sm btn-outline-secondary ms-2"
             >
               <i class="fa-fw fa fa-eye"></i> View User's Voted
@@ -72,9 +70,9 @@ export default {
         Duration: "",
         Artists: "",
         Genres: "",
-        File: ""
+        File: "",
       },
-      vote: false
+      vote: false,
     };
   },
   created() {
@@ -88,15 +86,15 @@ export default {
         method: "post",
         data: {
           MovieId: this.movieId,
-          UserId: this.user_login.UserId
-        }
+          UserId: this.user_login.UserId,
+        },
       });
     }
   },
   computed: {
     movieId() {
       return this.$route.params.id || "";
-    }
+    },
   },
   methods: {
     getInitData() {
@@ -104,10 +102,10 @@ export default {
         .dispatch("movie/getMovie", {
           url: `movie/detail`,
           params: {
-            MovieId: this.movieId
-          }
+            MovieId: this.movieId,
+          },
         })
-        .then(res => {
+        .then((res) => {
           this.data = res.respond.data;
 
           this.$store
@@ -116,10 +114,10 @@ export default {
               method: "get",
               params: {
                 MovieId: this.movieId,
-                UserId: this.user_login.UserId
-              }
+                UserId: this.user_login.UserId,
+              },
             })
-            .then(res => {
+            .then((res) => {
               console.log(res);
               if (res.respond.data) {
                 this.vote = true;
@@ -135,14 +133,14 @@ export default {
           method: "post",
           data: {
             MovieId: this.movieId,
-            UserId: this.user_login.UserId
-          }
+            UserId: this.user_login.UserId,
+          },
         })
-        .then(res => {
+        .then((res) => {
           // console.log(res.respond.vote);
           this.vote = res.respond.vote;
         });
-    }
-  }
+    },
+  },
 };
 </script>

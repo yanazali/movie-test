@@ -15,7 +15,7 @@
         <router-link to="/history" class="nav-link">History</router-link>
       </li>
     </div>
-    <div class="navbar-nav mr-auto">
+    <div v-if="user_login.UserCode" class="navbar-nav mr-auto">
       <li class="nav-item">
         <router-link to="/report" class="nav-link">Report</router-link>
       </li>
@@ -36,6 +36,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      user_login: JSON.parse(sessionStorage.getItem("user_login")),
+    };
+  },
   methods: {
     onLogoutClick: function () {
       sessionStorage.removeItem("token");

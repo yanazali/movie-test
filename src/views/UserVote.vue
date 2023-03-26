@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       token: sessionStorage.getItem("token"),
-      data: []
+      data: [],
     };
   },
   created() {
@@ -38,7 +38,7 @@ export default {
   computed: {
     movieId() {
       return this.$route.params.id || "";
-    }
+    },
   },
   methods: {
     getInitData() {
@@ -47,13 +47,13 @@ export default {
           url: `movie/user/vote`,
           method: "get",
           params: {
-            MovieId: this.movieId
-          }
+            MovieId: this.movieId,
+          },
         })
-        .then(res => {
+        .then((res) => {
           this.data = res.respond.data;
         });
-    }
-  }
+    },
+  },
 };
 </script>

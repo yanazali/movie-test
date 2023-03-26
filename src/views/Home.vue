@@ -16,11 +16,9 @@
 export default {
   name: "Home",
   data() {
-    return {
-    };
+    return {};
   },
-  computed: {
-  },
+  computed: {},
   created() {
     let token = sessionStorage.getItem("token");
     if (!token) {
