@@ -83,7 +83,7 @@
                 v-if="form.File"
                 id="video-pre"
                 style="max-width: 50vw"
-                :src="`http://localhost:9000/public/movie/get/${form.File}`"
+                :src="`${baseUrl}public/movie/get/${form.File}`"
                 controls
               ></video>
             </div>
@@ -107,9 +107,12 @@
 </template>
 
 <script>
+import config from "../config";
+
 export default {
   data() {
     return {
+      baseUrl: config("api.baseUrl"),
       token: sessionStorage.getItem("token"),
       user_login: JSON.parse(sessionStorage.getItem("user_login")),
       form: {
