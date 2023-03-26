@@ -5,7 +5,7 @@ module.exports = {
   apps: [
     {
       name: `${pkg.name}:${port}`,
-      script: "app.js",
+      script: "server.js",
       watch: true,
       env: {
         PORT: port,
