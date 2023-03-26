@@ -1,7 +1,7 @@
 const config = {
   api: {
-    baseUrl: "http://localhost:9000/",
-    // baseUrl: "http://202.145.0.38:9000/",
+    // baseUrl: "http://localhost:9000/",
+    baseUrl: "http://202.145.0.38:9000/",
     timeout: 60000,
   },
 };
