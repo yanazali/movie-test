@@ -8,7 +8,7 @@
               <nav class="d-inline-flex align-items-center">
                 <b-pagination
                   v-model="page"
-                  :total-rows="movieList.count"
+                  :total-rows="movieHistory.count"
                   :per-page="pageSize"
                   prev-text="Prev"
                   next-text="Next"
@@ -23,7 +23,7 @@
 
           <div class="mb-3">
             <div class="_panel-request">
-              <EmptyPlaceholder v-if="movieList.count == 0" />
+              <EmptyPlaceholder v-if="movieHistory.count == 0" />
               <table v-else class="table table-striped">
                 <thead>
                   <tr>
@@ -37,7 +37,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(req, idx) in movieList.rows" :key="idx">
+                  <tr v-for="(req, idx) in movieHistory.rows" :key="idx">
                     <td>{{ idx + 1 }}</td>
                     <td>{{ req.MovieId_view.Title }}</td>
                     <td>{{ req.MovieId_view.Description }}</td>
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      movieList: "movie/getMovieList",
+      movieHistory: "movie/getMovieHistory",
     }),
   },
   methods: {

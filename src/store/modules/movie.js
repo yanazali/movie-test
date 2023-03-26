@@ -6,16 +6,23 @@ export default {
   namespaced: true,
   state: {
     movieList: [],
+    movieHistory: []
   },
   getters: {
     getMovieList(state) {
       return state.movieList;
     },
+    getMovieHistory(state) {
+      return state.movieHistory;
+    }
   },
   mutations: {
     setMovieList(state, payload) {
       state.movieList = payload;
     },
+    setMovieHistory(state, payload) {
+      state.movieHistory = payload;
+    }
   },
   actions: {
     actionMovie({ dispatch }, payload) {
@@ -29,14 +36,14 @@ export default {
           params: payload.params,
           withCredentials: true,
           headers: {
-            Authorization: "Bearer " + token,
-          },
+            Authorization: "Bearer " + token
+          }
         })
-          .then((res) => {
+          .then(res => {
             resolve(res);
             dispatch("setLoading", false);
           })
-          .catch((err) => {
+          .catch(err => {
             reject(err);
             dispatch("setLoading", false);
             return false;
@@ -51,19 +58,23 @@ export default {
         url: payload.url,
         params: payload.params,
         headers: {
-          Authorization: "Bearer " + token,
-        },
+          Authorization: "Bearer " + token
+        }
       })
-        .then((res) => {
+        .then(res => {
           if (res.respond.status == "success") {
-            commit("setMovieList", res.respond.data);
+            if (payload.url == "movie/history") {
+              commit("setMovieHistory", res.respond.data);
+            } else {
+              commit("setMovieList", res.respond.data);
+            }
           } else if (res.respond.status == "forbidden") {
             // allMixin.methods.removeSession()
             router.push(`/login`).catch(() => {});
           }
           dispatch("setLoading", false);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("authjs=err" + err);
           dispatch("setLoading", false);
           return false;
@@ -78,10 +89,10 @@ export default {
           url: payload.url,
           params: payload.params,
           headers: {
-            Authorization: "Bearer " + token,
-          },
+            Authorization: "Bearer " + token
+          }
         })
-          .then((res) => {
+          .then(res => {
             resolve(res);
             if (res.respond.status == "success") {
               // commit("setMovie", res.respond.data);
@@ -91,7 +102,7 @@ export default {
             }
             dispatch("setLoading", false);
           })
-          .catch((err) => {
+          .catch(err => {
             reject(err);
             console.log("authjs=err" + err);
             dispatch("setLoading", false);
@@ -110,14 +121,14 @@ export default {
           withCredentials: true,
           headers: {
             Authorization: "Bearer " + token,
-            "Content-Type": "multipart/form-data",
-          },
+            "Content-Type": "multipart/form-data"
+          }
         })
-          .then((res) => {
+          .then(res => {
             resolve(res);
             dispatch("setLoading", false);
           })
-          .catch((err) => {
+          .catch(err => {
             console.log("authjs=err" + err);
             reject(err);
             dispatch("setLoading", false);
@@ -128,8 +139,8 @@ export default {
 
     setLoading({ commit }, payload) {
       commit("loader/setLoading", payload, {
-        root: true,
+        root: true
       });
-    },
-  },
+    }
+  }
 };
