@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Page should render correctly 1`] = `
+<div>
+  <authform-stub
+    labelbtn="Login"
+    labellinkto="Register"
+    linkto="register"
+    title="Login"
+  />
+</div>
+`;
+
+exports[`Register Page should render correctly 1`] = `
+<div>
+  <authform-stub
+    labelbtn="Register"
+    labellinkto="Back to Login"
+    linkto="login"
+    title="Register"
+  />
+</div>
+`;
